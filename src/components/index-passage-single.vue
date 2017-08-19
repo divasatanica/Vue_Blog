@@ -36,7 +36,6 @@ export default {
     cursor: pointer;
   }
   .container {
-    width: 100%;
     padding: 10px 16px;
     background-color: rgba(189,184,180,0.7);
   }
