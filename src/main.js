@@ -5,12 +5,22 @@ import App from './App'
 import router from './router'
 import VueResource from 'vue-resource'
 import ElementUI from 'element-ui'
+import hljs from 'highlight.js'
 import 'element-ui/lib/theme-default/index.css'
+import '@/assets/vs2015.css'
 
-Vue.config.productionTip = false
-Vue.use(ElementUI)
-Vue.use(VueResource)
+Vue.config.productionTip = false;
 
+Vue.use(ElementUI);
+
+Vue.use(VueResource);
+
+Vue.directive('highlight',function (el) {
+  let blocks = el.querySelectorAll('pre code');
+  blocks.forEach((block)=>{
+    hljs.highlightBlock(block)
+  })
+});
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -23,4 +33,4 @@ new Vue({
       Authorization: 'Basic YXBpOnBhc3N3b3Jk'
     }
   }
-})
+});
