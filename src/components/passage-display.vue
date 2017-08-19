@@ -1,8 +1,9 @@
 <template>
   <div class="passage-container">
+    <div class="go-back el-icon-arrow-left"></div>
     <h1>{{article.header}}</h1>
     <span>{{article.timeStamp | geneTime}} {{article.clock}}</span>
-    <div v-html="article.marked"></div>
+    <div v-html="article.marked" class="marked" v-highlight></div>
   </div>
 </template>
 
@@ -29,22 +30,11 @@ export default {
     }
     margin-bottom: 2rem;
   }
-  h2, h3, h4, h5, h6 {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    text-indent: 1.5rem;
-  }
-  p {
-    margin: {
-      top: 10px;
-      bottom: 10px;
-    }
-  }
   .passage-container {
     background: {
       color: rgba(255,255,253,0.5);
     }
-    width: 750px;
+    width: 75%;
     border-radius: 3px;
     padding: {
       top: 20px;
@@ -52,7 +42,18 @@ export default {
       bottom: 20px;
       left: 30px;
     }
+    margin: 0 auto;
     margin-top: 30px;
-    margin-left: 50px;
+  }
+  .go-back {
+    position: fixed;
+    left: 0;
+    height: 300px;
+    width: 50px;
+    line-height: 300px;
+    font-size: 4rem;
+  }
+  .go-back:hover {
+    background-color: rgba(200,200,200,0.5);
   }
 </style>

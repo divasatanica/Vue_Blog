@@ -56,4 +56,13 @@ export default {
   a, p, div, pre, code {
     font-family: Microsoft Yahei;
   }
+  h2, h3, h4, h5, h6 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    text-indent: 1.5rem;
+  }
+  .marked p {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 </style>
