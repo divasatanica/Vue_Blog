@@ -21,6 +21,7 @@ Vue.directive('highlight',function (el) {
     hljs.highlightBlock(block)
   })
 });
+window.bus = new Vue({})
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
@@ -34,3 +35,5 @@ new Vue({
     }
   }
 });
+
+
