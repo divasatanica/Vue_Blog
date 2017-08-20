@@ -4,11 +4,11 @@
       <li class="entry">首页</li>
       <li class="entry" v-on:mouseenter='openMenu()' v-on:mouseleave='closeMenu()'>文章</li>
       <ul class="dropdown" v-bind:class='dropdownClass' v-on:mouseenter='openMenu()' v-on:mouseleave='closeMenu()'>
-          <li class="sub-entry" v-for="item in passageClass" v-bind:key="item.id">{{item.text}}</li>
+          <li class="sub-entry" v-for="(item, index) in passageClass" v-bind:key="item.id" v-on:click="log(index)">{{item.text}}</li>
       </ul>
       <li class="entry" v-on:click="req()">脑洞</li>
     </ul>
-    <button class="login cusFont">{{msg}}</button>
+    <button class="login cusFont" @click="login"><router-link :to="{name:'login', path:'/login'}" @click="push" class="login-link">{{msg}}</router-link></button>
   </div>
 </template>
 
@@ -31,11 +31,45 @@ export default {
     },
     req () {
       this.$http.get('http://comacc.top/article/newest/?offset=0').then(response => {
-        // console.log(response.data[0])
-        this.$emit('passage', response.data[0]);
+        console.log(response.data[3].tag)
+        this.$emit('passage', response.data[3]);
       }, (err) => {
         console.error(err);
       })
+    },
+    log(data) {
+      console.log(data);
+    },
+    push() {
+      window.history.pushState({}, document.title, '/');
+    },
+    login() {
+      /* const h = this.$createElement;
+      this.$msgbox({
+        title: '登录',
+        message: h('div', null, [
+          h('div', null, [
+            h('label', {attrs:{for:'user'}}, '用户名'),
+            h('input', {attrs:{'placeholder': '请输入用户名', name: 'user'},domProps:{value: this.user}}, '')
+          ]),
+          h('div', null, [
+            h('label', {attrs:{for:'user'}}, '密码'),
+            h('input', {'placeholder': '请输入密码', 'name': 'pswd'}, '')
+          ])
+        ]),
+        showCancelButton: true,
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        beforeClose(action, instance, done) {
+          done();
+        }
+      }).then(({value}) => {
+        console.log(value);
+        // console.log(action);
+      }).catch((action) => {
+        // console.log(action);
+      })  */
+      //this.$router.push({path: '/login'});
     }
   }
 }
@@ -133,5 +167,11 @@ export default {
     font: {
       size: 1.2rem;
     }
+  }
+  .login-link {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    line-height: 50px;
   }
 </style>
