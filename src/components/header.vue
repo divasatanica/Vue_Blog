@@ -27,7 +27,7 @@ export default {
   }
   h1, p{
     margin: 0 !important;
-    color: #fff;
+    color: #e5ece9;
   }
   .cusFont {
     font: {

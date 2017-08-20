@@ -1,18 +1,23 @@
 <template>
   <div id="app">
-    <navbar v-on:passage="handler"></navbar>
-    <div class="container">
-      <blogheader>面向大海编程</blogheader>
+    <nav-bar v-on:passage="handler"></nav-bar>
+    <div class="root-container">
+      <blog-header>面向大海编程</blog-header>
     </div>
-    <passagedisplay v-bind:article="sheader"></passagedisplay>
-    <!-- <router-view></router-view> -->
+    <!-- <index-passage></index-passage> -->
+    <router-view></router-view>
+    <transition name="el-zoom-in-center">
+      <router-view name="login"></router-view>
+    </transition>
   </div>
 </template>
 
 <script>
-import blogheader from '@/components/header'
-import navbar from '@/components/nav-bar'
-import passagedisplay from '@/components/passage-display'
+import blogHeader from '@/components/header'
+import navBar from '@/components/nav-bar'
+import passageDisplay from '@/components/passage-display'
+import indexPassage from '@/components/index-passage-container'
+
 
 export default {
   name: 'app',
@@ -22,9 +27,10 @@ export default {
     }
   },
   components: {
-    blogheader,
-    navbar,
-    passagedisplay
+    blogHeader,
+    navBar,
+    passageDisplay,
+    indexPassage
   },
   methods: {
     handler (data) {
@@ -50,7 +56,11 @@ export default {
       size: 14px;
     }
   }
-  .container {
+  a {
+    text-decoration: none;
+    color: #e5ece9;
+  }
+  .root-container {
     margin-top: 80px;
   }
   a, p, div, pre, code {
@@ -64,5 +74,21 @@ export default {
   .marked p {
     margin-top: 10px;
     margin-bottom: 10px;
+  }
+  .el-message-box__message {
+    div {
+      padding: 5px 8px;
+      label {
+        display: inline-block;
+        width: 50px;
+        text-align: right;
+        margin-right: 10px;
+      }
+      input {
+        display: inline-block;
+        width: 250px;
+        height: 25px;
+      }
+    }
   }
 </style>
