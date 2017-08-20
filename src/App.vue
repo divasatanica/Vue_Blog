@@ -5,16 +5,15 @@
       <blog-header>面向大海编程</blog-header>
     </div>
     <!-- <index-passage></index-passage> -->
-    <router-view></router-view>
-    
+    <!-- <router-view></router-view> -->
+    <post-edit></post-edit>
   </div>
 </template>
 
 <script>
 import blogHeader from '@/components/header'
 import navBar from '@/components/nav-bar'
-import passageDisplay from '@/components/passage-display'
-import indexPassage from '@/components/index-passage-container'
+import postEdit from '@/components/post-edit'
 
 
 export default {
@@ -27,8 +26,7 @@ export default {
   components: {
     blogHeader,
     navBar,
-    passageDisplay,
-    indexPassage
+    postEdit
   },
   methods: {
     handler (data) {
