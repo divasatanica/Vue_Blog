@@ -8,7 +8,8 @@
       </ul>
       <li class="entry" v-on:click="req()">脑洞</li>
     </ul>
-    <button class="login cusFont" @click="login"><router-link :to="{name:'login', path:'/login'}" @click="push" class="login-link">{{msg}}</router-link></button>
+    <span class="username">{{loggedName}}</span>
+    <button class="login cusFont" ><router-link :to="{name:'login', path:'/login'}" class="login-link">{{msg}}</router-link></button>
   </div>
 </template>
 
@@ -17,6 +18,7 @@ export default {
   data () {
     return {
       msg: '登录',
+      loggedName: '',
       hasOpen: false,
       passageClass: [{id: 0, text: '学习'}, {id: 1, text: '吹水'}],
       dropdownClass: {'dropdown-open': false}
@@ -43,34 +45,12 @@ export default {
     push() {
       window.history.pushState({}, document.title, '/');
     },
-    login() {
-      /* const h = this.$createElement;
-      this.$msgbox({
-        title: '登录',
-        message: h('div', null, [
-          h('div', null, [
-            h('label', {attrs:{for:'user'}}, '用户名'),
-            h('input', {attrs:{'placeholder': '请输入用户名', name: 'user'},domProps:{value: this.user}}, '')
-          ]),
-          h('div', null, [
-            h('label', {attrs:{for:'user'}}, '密码'),
-            h('input', {'placeholder': '请输入密码', 'name': 'pswd'}, '')
-          ])
-        ]),
-        showCancelButton: true,
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        beforeClose(action, instance, done) {
-          done();
-        }
-      }).then(({value}) => {
-        console.log(value);
-        // console.log(action);
-      }).catch((action) => {
-        // console.log(action);
-      })  */
-      //this.$router.push({path: '/login'});
-    }
+  },
+  created() {
+    window.bus.$on('loginner', data => {
+      this.msg = '发布文章';
+      this.loggedName = data;
+    })
   }
 }
 </script>
@@ -145,11 +125,19 @@ export default {
   .sub-entry:hover {
     background-color: rgba(100,100,100,0.5);
   } 
+  /* username */
+  span.username {
+    display: inline-block;
+    height: 60px;
+    line-height: 60px;
+    margin-left: 35%;
+    margin-right: 20px;
+    color: #e5ece9;
+  }
   /* login-button */
   .login {
     position: absolute;
     right: 5%;
-    width: 80px;
     height: 60px;
     cursor: pointer;
     transition: all 0.3s ease;
