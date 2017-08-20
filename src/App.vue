@@ -6,9 +6,7 @@
     </div>
     <!-- <index-passage></index-passage> -->
     <router-view></router-view>
-    <transition name="el-zoom-in-center">
-      <router-view name="login"></router-view>
-    </transition>
+    
   </div>
 </template>
 

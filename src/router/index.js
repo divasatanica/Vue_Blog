@@ -18,7 +18,6 @@ export default new Router({
       path: '/login',
       name: 'login',
       components: {
-        default: indexPassage,
         login: login
       }
     },

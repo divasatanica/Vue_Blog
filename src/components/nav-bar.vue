@@ -9,7 +9,11 @@
       <li class="entry" v-on:click="req()">脑洞</li>
     </ul>
     <span class="username">{{loggedName}}</span>
-    <button class="login cusFont" ><router-link :to="{name:'login', path:'/login'}" class="login-link">{{msg}}</router-link></button>
+    <button class="login cusFont" v-if="hasLogged"><router-link :to="{path: '/post'}">发布文章</router-link></button>
+    <button class="login cusFont"><router-link :to="topRightLink" class="login-link">{{msg}}</router-link></button>
+    <transition name="el-zoom-in-center" >
+      <router-view name="login" v-on:loginner="login"></router-view>
+    </transition>
   </div>
 </template>
 
@@ -20,8 +24,10 @@ export default {
       msg: '登录',
       loggedName: '',
       hasOpen: false,
+      hasLogged: false,
       passageClass: [{id: 0, text: '学习'}, {id: 1, text: '吹水'}],
-      dropdownClass: {'dropdown-open': false}
+      dropdownClass: {'dropdown-open': false},
+      topRightLink: {name:'login', path: '/login'}
     }
   },
   methods: {
@@ -42,15 +48,12 @@ export default {
     log(data) {
       console.log(data);
     },
-    push() {
-      window.history.pushState({}, document.title, '/');
-    },
-  },
-  created() {
-    window.bus.$on('loginner', data => {
-      this.msg = '发布文章';
+    login(data) {
+      this.msg = '登出';
+      this.hasLogged = true;
       this.loggedName = data;
-    })
+      this.topRightLink = {name: 'login', path: 'logout'};
+    }
   }
 }
 </script>
@@ -130,19 +133,24 @@ export default {
     display: inline-block;
     height: 60px;
     line-height: 60px;
-    margin-left: 35%;
+    margin-left: 30%;
     margin-right: 20px;
     color: #e5ece9;
   }
   /* login-button */
   .login {
     position: absolute;
-    right: 5%;
     height: 60px;
     cursor: pointer;
     transition: all 0.3s ease;
     color: #e5ece9;
     background-color: rgba(0,0,0,0);
+  }
+  .login:nth-of-type(1) {
+    right: 10%;
+  }
+  .login:nth-of-type(2) {
+    right: 5%;
   }
   .login:hover {
     color: #fff;

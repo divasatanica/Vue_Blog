@@ -31,7 +31,7 @@ export default {
       if(this.user && this.pswd) {
         let data = {name: this.user, password: this.pswd};
         this.$http.post('http://comacc.top/login/', data, {credentials: true}).then((response) => {
-          bus.$emit('loginner', this.user);
+          this.$emit('loginner', this.user);
           this.back();
         }).catch((err) => {
           console.error(err);
