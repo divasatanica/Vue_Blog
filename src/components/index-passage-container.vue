@@ -3,7 +3,7 @@
     <div class="passage-container-topbar"></div>
     <div class="passage-func-zone">
       <div class="passages">
-        <single v-for="item in articles" :key="item._id" :article="item"></single>
+        <single v-for="(item, index) in articles" :key="item._id" :article="item" ></single>
       </div>
       <div class="side-bar"></div>
     </div>
@@ -27,6 +27,9 @@ export default {
       }, (err) => {
         console.error(err);
       })
+    },
+    checkPassage(index) {
+
     }
   },
   components: {
@@ -50,7 +53,7 @@ export default {
     width: 100%;
     height: 40px;
     background: {
-      color: #7b7269;
+      color: #494949;
     }
     border: {
       top-left-radius: 5px;

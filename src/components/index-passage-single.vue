@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <span><h1 v-on:click="detail(index)">{{article.header}}</h1></span><span class="time">{{article.timeStamp | geneTime}} {{article.clock}}</span>
+    <span><h1 v-on:click="detail(index)"><router-link :to="nav">{{article.header}}</router-link></h1></span><span class="time">{{article.timeStamp | geneTime}} {{article.clock}}</span>
     <div class="tags"><span class="tag" v-for="(item, index) in article.tag" v-bind:key="item.timeStamp" v-on:click="filterTags(item)">#{{item}}</span></div>
   </div>
 </template>
@@ -8,6 +8,13 @@
 <script>
 export default {
   props: ['article', 'index'],
+  data() {
+    return {
+      nav: {
+        path: `article/${this.article._id}`
+      }
+    }
+  },
   filters: {
     geneTime(str) {
       return `${str.substr(0,4)}-${str.substr(4,2)}-${str.substr(6,2)}`;
@@ -34,6 +41,9 @@ export default {
     margin: {
     }
     cursor: pointer;
+  }
+  h1 a {
+    color: #000;
   }
   .container {
     padding: 10px 16px;

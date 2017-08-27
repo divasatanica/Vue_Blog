@@ -8,6 +8,7 @@ import navBar from '@/components/nav-bar'
 import passageDisplay from '@/components/passage-display'
 import indexPassage from '@/components/index-passage-container'
 import login from '@/components/login-message'
+import display from '@/components/passage-display'
 
 Vue.use(Router)
 
@@ -22,9 +23,14 @@ export default new Router({
       }
     },
     {
-      path: '/',
+      path: '/article',
       name: 'passages',
       component: indexPassage
+    },
+    {
+      path: '/article/:id',
+      name: 'display',
+      component: display
     }
   ]
 })

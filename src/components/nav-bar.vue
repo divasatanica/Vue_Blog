@@ -1,11 +1,8 @@
 <template>
   <div class="nav-bar">
     <ul class="entries">
-      <li class="entry">首页</li>
-      <li class="entry" v-on:mouseenter='openMenu()' v-on:mouseleave='closeMenu()'>文章</li>
-      <ul class="dropdown" v-bind:class='dropdownClass' v-on:mouseenter='openMenu()' v-on:mouseleave='closeMenu()'>
-          <li class="sub-entry" v-for="(item, index) in passageClass" v-bind:key="item.id" v-on:click="log(index)">{{item.text}}</li>
-      </ul>
+      <li class="entry"><router-link to="/">首页</router-link></li>
+      <li class="entry" v-on:mouseenter='openMenu()' v-on:mouseleave='closeMenu()'><router-link to="/article">文章</router-link></li>
       <li class="entry" v-on:click="req()">脑洞</li>
     </ul>
     <span class="username">{{loggedName}}</span>
@@ -69,6 +66,10 @@ export default {
   li {
     list-style: none;
   }
+  a {
+    display: inline-block;
+    width: 100%;
+  }
   /* navigator-bar */
   .nav-bar {
     position: absolute;
@@ -78,7 +79,7 @@ export default {
     height: 60px;
     box-shadow: 0 9px 10px 0 rgba(39, 39, 39, 0.5);
     background: {
-      color: #96897B;
+      color: #1e1e1e;
     }
   }
   /* navigator-entries */

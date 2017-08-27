@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1 class="cusFont">Coma's Blog</h1>
+    <h1 class="cusFont">Dunkelheit</h1>
     <p class="cusFont"><slot></slot></p>
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div class="passage-container">
-    <div class="go-back el-icon-arrow-left"></div>
+    <div class="go-back el-icon-arrow-left" @click="back"></div>
     <h1>{{article.header}}</h1>
     <span>{{article.timeStamp | geneTime}} {{article.clock}}</span>
     <div v-html="article.marked" class="marked" v-highlight></div>
@@ -9,11 +9,30 @@
 
 <script>
 export default {
-  props: ['article'],
+  data() {
+    return {
+      article: {
+        header: '',
+        timeStamp: '',
+        marked: '',
+        clock: ''
+      }
+    }
+  },
   filters: {
     geneTime(str) {
       return `${str.substr(0, 4)}-${str.substr(4, 2)}-${str.substr(6, 2)}`;
     }
+  },
+  methods: {
+    back() {
+      this.$router.push({path: '/article'})
+    }
+  },
+  created() {
+    this.$http.get(`http://comacc.top/article/display/${this.$route.params.id}`).then(result => {
+      this.article = result.data;
+    }); 
   }
 }
 </script>
