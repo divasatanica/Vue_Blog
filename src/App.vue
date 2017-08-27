@@ -2,18 +2,19 @@
   <div id="app">
     <nav-bar v-on:passage="handler"></nav-bar>
     <div class="root-container">
-      <blog-header>面向大海编程</blog-header>
+      <blog-header>Black Heart</blog-header>
     </div>
+    <!-- <post></post> -->
     <!-- <index-passage></index-passage> -->
-    <!-- <router-view></router-view> -->
-    <post-edit></post-edit>
+    <router-view></router-view>
+    
   </div>
 </template>
 
 <script>
 import blogHeader from '@/components/header'
 import navBar from '@/components/nav-bar'
-import postEdit from '@/components/post-edit'
+import post from '@/components/post-container'
 
 
 export default {
@@ -26,7 +27,7 @@ export default {
   components: {
     blogHeader,
     navBar,
-    postEdit
+    post
   },
   methods: {
     handler (data) {
@@ -44,8 +45,9 @@ export default {
   body {
     min-width: 1024px;
     background: {
-      color: #545454;
+      color: #303030;
     }
+
   }
   html {
     font: {
