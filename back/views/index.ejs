@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/css/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <p>Gooday to <%= user %></p>
+    <h1 id="h"></h1>
+    <div id="t">
+      
+    </div>
+    <button onclick="doajax()">Click Me</button>
+  </body>
+  <script>
+    function doajax() {
+      ajax({type:'get', url:'http://huaban.com/search/?q=%E4%BA%8C%E6%AC%A1%E5%85%83&j6xfvi9i=&page=2&per_page=20&wfl=1&j6xp6xks&page=2&per_page=20&wfl=1'});
+    }
+    function createXHR(){
+			if(window.XMLHttpRequest){
+				return new XMLHttpRequest();
+			}
+			else if (window.ActiveXObject){
+				return new ActiveXObject('Microsoft.XMLHTTP');
+			}
+			else{
+				alert('Your browser does not support Ajax');
+			}
+		}
+		function ajax(options){
+			options = options || {};
+			options.type = (options.type || "GET").toUpperCase();
+			options.async = (options.async == false) ? false : true;
+			options.dataType = options.dataType || "json";
+			var xhr = createXHR();
+			var isCancel = setTimeout(function(){ xhr.abort(); alert('Time out !');}, 5000);
+			if(options.type.toLowerCase() == 'get') {
+        
+        xhr.open("GET", encodeURI(options.url), options.async);
+        xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+				xhr.send(null);
+				xhr.onreadystatechange = function(){
+					if(xhr.readyState == 4 && xhr.status == 200){
+						var res = (window.JSON) ? JSON.parse(xhr.responseText) : eval("(" + xhr.responseText + ")");
+            /* var t = document.getElementById("t");
+            var h = document.getElementById("h");
+            h.innerText = res[1].header;
+            t.innerHTML = res[1].marked; */
+						clearTimeout(isCancel);
+					}
+				}
+			}
+			else if(options.type.toLowerCase() == 'post'){
+				xhr.open("POST", options.url, options.async);
+				xhr.setRequestHeader("Content-Type", "application/json");
+				xhr.send(options.data);
+				xhr.onreadystatechange = function(){
+					if(xhr.readyState == 4 && xhr.status == 200){
+						alert(xhr.responseText);
+					}
+				}
+			} 
+		}
+  </script>
+</html>
