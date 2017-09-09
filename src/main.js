@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import VueResource from 'vue-resource'
+import axios from 'axios'
 import ElementUI from 'element-ui'
 import hljs from 'highlight.js'
 import 'element-ui/lib/theme-default/index.css'
@@ -13,7 +13,7 @@ Vue.config.productionTip = false;
 
 Vue.use(ElementUI);
 
-Vue.use(VueResource);
+Vue.prototype.$http = axios;
 
 Vue.directive('highlight',function (el) {
   let blocks = el.querySelectorAll('pre code');
