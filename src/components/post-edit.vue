@@ -11,7 +11,7 @@
 		<div class="tags-to">
 			<span class="tag-to-select" v-for="(item, index) in tags" :key="item.value" @click="selectThatExisted(index)">#{{item.value}}</span>
 		</div>
-		<textarea id="para" rows="30" v-on:input="update" v-model="content" ref="text"></textarea>
+		<textarea id="para" rows="30" v-on:input="update" v-on:change="update" v-model="content" ref="text"></textarea>
 		<el-upload
 			class="upload-image"
 			ref="upload"
@@ -76,6 +76,7 @@ export default {
 			GetCursor();
 			insertText(str);
 			this.content = this.$refs.text.value;
+			this.update();
 			function GetCursor() {
 				if (document.all) {//IE要保存Range
 					_this.$refs.text.focus(); 
@@ -137,9 +138,9 @@ export default {
 		}
 	},
 	mounted() {
-		this.$http.get('http://comacc.top/article/newest').then(result => {
+		this.$http.get('http://comacc.top/article/newest/0').then(result => {
 			let date = new Date();
-			let o = result.data;
+			let o = result.data.article;
 			date = String(date.getFullYear()) + ((date.getMonth()+1)>9?'':'0') + String(date.getMonth()+1) + (date.getDate()>9?'':'0') + String(date.getDate());
 			if(o[0].timeStamp.slice(0, 8) == date){
 				this.count = Number(o[0].timeStamp.slice(8)) + 1;
@@ -147,7 +148,6 @@ export default {
 			else{
 				this.count = 0;
 			}
-			 
 		})
 		this.$http.get('http://comacc.top/index/getTags').then((result)=>{
 			for(let i in result.data){
@@ -262,6 +262,9 @@ export default {
 			color: rgba(0,0,0,0.35);
 		}
 	}
+	.el-upload__tip {
+		color: #29272b;
+	}
 	.post-passage {
 		display:block;
 		float: right;
@@ -272,6 +275,9 @@ export default {
 		background-color: rgba(0,0,0,0.5);
 		color: white;
 		transition: all 0.3s ease-in;
+		&+p {
+			color: #29272b;
+		}
 	}
 	#paraDiv:hover {
 		background-color: rgba(0,0,0,0.3);
