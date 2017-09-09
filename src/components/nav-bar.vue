@@ -3,7 +3,7 @@
     <ul class="entries">
       <li class="entry"><router-link to="/">首页</router-link></li>
       <li class="entry" v-on:mouseenter='openMenu()' v-on:mouseleave='closeMenu()'><router-link to="/article">文章</router-link></li>
-      <li class="entry" v-on:click="req()">脑洞</li>
+      <li class="entry">脑洞</li>
     </ul>
     <span class="username">{{loggedName}}</span>
     <button class="login cusFont" v-if="hasLogged"><router-link :to="{path: '/post'}">发布文章</router-link></button>
@@ -33,17 +33,6 @@ export default {
     },
     closeMenu () {
       this.dropdownClass['dropdown-open'] = false;
-    },
-    req () {
-      this.$http.get('http://comacc.top/article/newest/?offset=0').then(response => {
-        console.log(response.data[3].tag)
-        this.$emit('passage', response.data[3]);
-      }, (err) => {
-        console.error(err);
-      })
-    },
-    log(data) {
-      console.log(data);
     },
     login(data) {
       this.msg = '登出';

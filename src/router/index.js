@@ -9,6 +9,7 @@ import passageDisplay from '@/components/passage-display'
 import indexPassage from '@/components/index-passage-container'
 import login from '@/components/login-message'
 import display from '@/components/passage-display'
+import post from '@/components/post-container';
 
 Vue.use(Router)
 
@@ -31,6 +32,11 @@ export default new Router({
       path: '/article/:id',
       name: 'display',
       component: display
+    },
+    {
+      path: '/post',
+      name: 'post',
+      component: post
     }
   ]
 })

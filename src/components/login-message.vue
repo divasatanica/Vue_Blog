@@ -83,7 +83,7 @@ export default {
     margin: 200px auto;
     margin-bottom: 0;
     background: {
-      color: #7b7269;
+      color: #494949;
     }
     border: {
       top-left-radius: 5px;
