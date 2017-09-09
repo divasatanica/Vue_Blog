@@ -89,4 +89,91 @@ export default {
       }
     }
   }
+  .el-pagination {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .el-pagination{
+    .btn-prev, .btn-next, button.disabled {
+      color: #29272b;
+      background-color: #b1b1b1;
+    }
+    button:hover {
+      color: #eee;
+    }
+  }
+  .el-page li:hover {
+    color: #29272b;
+  }
+  .el-pagination--small {
+    .el-pager {
+      li {
+        border-radius: 0;
+      }
+    }
+  }
+  .el-pager {
+    li {
+      background: #b1b1b1;
+    }
+    li:hover {
+      color: #eee;
+    }
+    li.active {
+      border-color: #212121;
+      background-color: #212121;
+    }
+  }
+  .el-message {
+    background-color: rgba(120,120,120,0.7);
+    .el-message__group {
+      p {
+        color: #fff;
+      }
+    }
+  }
+  .el-input__inner {
+    background: #808080;
+    border-color: #808080;
+    color: #eee;
+    &:hover {
+      border-color: #a0a0a0;
+    }
+    &:focus {
+      border: none;
+    }
+  }
+  .el-picker-panel {
+    border: none;
+    box-shadow: none;
+    .el-picker-panel__content {
+      background-color: #606060;
+      color: #fff;
+      border: none;
+    }
+  }
+  .el-picker-panel__icon-btn:hover {
+    color: #a5a5a5;
+  }
+  .el-date-table {
+    td.current:not(.disabled), td.end-date, td.start-date {
+      background-color: #353535 !important;
+    }
+    td.today {
+      color: #252525;
+      &:before {
+        border-top: .5em solid #707070;
+      }
+    }
+    td.in-range {
+      background-color: #707070;
+      &:hover {
+        background-color: #858585;
+      }
+    }
+    td.prev-month, td.next-month { 
+      color: #29272b;
+    }
+  }
 </style>
