@@ -6,8 +6,8 @@
       <!-- <li class="entry custom-font">Work</li>
       <li class="entry custom-font">About</li> -->
     </ul>
-    <button class="login" v-if="hasLogged"><router-link :to="{path: '/post'}" class="custom-font">POST</router-link></button>
-    <button class="login" v-if="!hasLogged"><router-link v-bind:to="topRightLink" class="login-link custom-font">LOGIN</router-link></button>
+    <button class="login" v-if="hasLogged || loggedin"><router-link :to="{path: '/post'}" class="custom-font">POST</router-link></button>
+    <button class="login" v-if="!hasLogged && !loggedin"><router-link v-bind:to="topRightLink" class="login-link custom-font">LOGIN</router-link></button>
     <button class="login login-link custom-font" v-else @click="logout">LOGOUT</button>
     <transition name="el-zoom-in-center" >
       <router-view name="login" v-on:loginner="login"></router-view>
@@ -17,13 +17,13 @@
 
 <script>
 export default {
-  // props: ['hasLogged'],
+  props: ['hasLogged'],
   data () {
     return {
       msg: 'Login',
       loggedName: '',
       hasOpen: false,
-      hasLogged: false,
+      loggedin: false,
       passageClass: [{id: 0, text: '学习'}, {id: 1, text: '吹水'}],
       dropdownClass: {'dropdown-open': false},
       topRightLink: {name:'login', path: '/login'}
@@ -38,12 +38,13 @@ export default {
     },
     login(data) {
       this.msg = 'LOGOUT';
-      this.hasLogged = true;
+      this.loggedin = true;
       this.loggedName = data;
     },
     logout() {
       if(window.confirm('Sure to QUIT?')) {
-        this.hasLogged = false;
+        this.loggedin = false;
+        this.$emit('logout');
         if(this.$route.path.indexOf('post') > -1) {
           this.$router.push({path: '/article/1'});
         }
