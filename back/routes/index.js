@@ -5,12 +5,6 @@ const DB_CONN_STR = 'mongodb://localhost:27017/blog';
 const dbhandle = require('../mongo.js');
 
 /* GET home page. */
-router.get('/', (req, res) => {
-  res.sendfile("public/index.html");
-});
- router.get('/post', (req, res) => {
-  res.sendfile("public/para.html");
-}); 
 router.get('/getTags', (req, res) => {
   mongo.connect(DB_CONN_STR, (err, db) => {
     if(err) {throw err;}
@@ -25,9 +19,10 @@ router.get('/getTags', (req, res) => {
     }, {}, 'tags');
   })
 })
-router.get('/testtest', (req, res)=> {
-  res.render('index', {"title":"Ajax Test", "user":"芝士君"});
-})
+
+router.get('/*', (req, res) => {
+  res.sendfile("public/index.html");
+});
 
 
 module.exports = router;

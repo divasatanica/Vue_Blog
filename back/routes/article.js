@@ -26,7 +26,7 @@ router.post('/new', function(req, res, next) {
 	dbObject.marked = mark(data.passage2mark);
 	dbObject.clock = data.clock; 
 	dbObject.tag = JSON.parse(data.tags);
-	dbObject.timeStamp = String(date.getFullYear())  + '0' + String(date.getMonth() + 1) + (date.getDate()>9?'':'0') + String(date.getDate()) + ((req.body.count >= 10) ? '0' + String(req.body.count) : '00' + String(req.body.count));
+	dbObject.timeStamp = String(date.getFullYear())  + (date.getMonth()>8?'':'0') + String(date.getMonth() + 1) + (date.getDate()>9?'':'0') + String(date.getDate()) + ((req.body.count >= 10) ? '0' + String(req.body.count) : '00' + String(req.body.count));
 	mongo.connect(DB_CONN_STR, function(err, db){
 		saveTags(dbObject.tag);
 		dbhandle.insertData(db, function(result){
@@ -71,7 +71,7 @@ router.post('/filtering', (req, res) => {
 		where = {"tag": _tag}; //匹配数组内多项则为{"tag": {$all: [tag1, tag2]}}
 	}
 	mongo.connect(DB_CONN_STR, (err, db) => {
-		dbhandle.findDataWithOffset(db, (result) => {
+		dbhandle.findData(db, (result) => {
 			if(result.length == 0) {
 				res.send({"code": 0, "message": "Not found"});
 				return;
@@ -122,7 +122,7 @@ router.get('/newest/:offset', function(req, res, next){
 			for(let i in result){
 				response.article.push(result[i]);
 			}
-			response.length = result.length;
+			response.length = length;
 			response.code = 1;
 			res.send(response);
 			db.close();

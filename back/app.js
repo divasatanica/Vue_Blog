@@ -51,6 +51,7 @@ app.options('*', cors({
 	credentials: true
 }));
 
+
 app.use('/index', index);
 app.use('/upload', upload);
 app.use('/article', article);  
@@ -59,7 +60,9 @@ app.use('/ng', (req, res) => {
 	res.header('Access-Control-Allow-Origin', '*');
 	res.sendfile('public/ng.html');
 })
-
+app.get('/*', (req, res) => {
+	res.sendfile("public/index.html");
+})
 // catch 404 and forward to error handler
 /*app.use(function(req, res, next) {
   var err = new Error('Not Found');

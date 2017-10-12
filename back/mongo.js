@@ -9,7 +9,7 @@ function insertData(db, callback, data, collections){
 	});
 }
 
-function findData(db, callback, wherestr, collections){
+function findData(db, callback, wherestr, collections, offset){
   let collection = db.collection(collections);
   let length;
   collection.count((err, count) => {
@@ -19,7 +19,7 @@ function findData(db, callback, wherestr, collections){
     }
   })
   setTimeout(() => {
-    collection.find(wherestr).toArray(function(err, result){
+    collection.find(wherestr).sort({timeStamp: -1}).skip(+offset).limit(5).toArray(function(err, result){
       if(err){
         console.log('Error:' + err);
         return ;
