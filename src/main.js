@@ -25,9 +25,17 @@ axios.defaults.withCredentials = true;
 
 Vue.directive('highlight',function (el) {
   let blocks = el.querySelectorAll('pre code');
-  blocks.forEach((block)=>{
-    hljs.highlightBlock(block)
-  })
+  if(!blocks.forEach) {
+    for(let i = 0, len = blocks.length;i < len;i ++) {
+      hljs.highlightBlock(blocks[i]);
+    }
+  }
+  else {
+    blocks.forEach((block)=>{
+      hljs.highlightBlock(block)
+    })
+  }
+  
 });
 
 /* eslint-disable no-new */
