@@ -121,7 +121,7 @@ export default {
 			data.clock = `${date.getHours()}:`+ (date.getMinutes()<10?'0':'') + `${date.getMinutes()}`;
 			data.tags = JSON.stringify(arr);
 			data.count = this.count;
-			this.$http.post('http://comacc.top/article/new', data).then((result) => {
+			this.$http.post('http://localhost:3000/article/new', data).then((result) => {
 				this.header = '';
 				this.content = '';
 				this.selected = [];

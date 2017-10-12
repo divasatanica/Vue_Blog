@@ -12,7 +12,6 @@
 <script>
 import blogHeader from '@/components/header'
 import navBar from '@/components/nav-bar'
-import post from '@/components/post-container'
 
 
 export default {
@@ -24,8 +23,7 @@ export default {
   },
   components: {
     blogHeader,
-    navBar,
-    post
+    navBar
   },
   methods: {
     handler (data) {

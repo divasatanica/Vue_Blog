@@ -5,11 +5,10 @@ import Router from 'vue-router'
 
 import blogHeader from '@/components/header'
 import navBar from '@/components/nav-bar'
-import passageDisplay from '@/components/passage-display'
-import indexPassage from '@/components/index-passage-container'
-import login from '@/components/login-message'
-import display from '@/components/passage-display'
-import post from '@/components/post-container';
+// import indexPassage from '@/components/index-passage-container'
+// import login from '@/components/login-message'
+// import display from '@/components/passage-display'
+// import post from '@/components/post-container';
 
 Vue.use(Router)
 
@@ -20,23 +19,23 @@ export default new Router({
       path: '/login',
       name: 'login',
       components: {
-        login: login
+        login: resolve => require(['../components/login-message.vue'], resolve)
       },
     },
     {
       path: '/article/:page',
       name: 'passages',
-      component: indexPassage
+      component: resolve => require(['../components/index-passage-container.vue'], resolve)
     },
     {
       path: '/p/:id',
       name: 'display',
-      component: display
+      component: resolve => require(['../components/passage-display.vue'], resolve)
     },
     {
       path: '/post',
       name: 'post',
-      component: post,
+      component: resolve => require(['../components/post-container.vue'], resolve),
       beforeEnter : (to, from, next) => {
         if(window.$_proxy && window.$_proxy(null, 'get')) {
           next();
