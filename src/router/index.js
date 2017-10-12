@@ -21,22 +21,31 @@ export default new Router({
       name: 'login',
       components: {
         login: login
-      }
+      },
     },
     {
-      path: '/article',
+      path: '/article/:page',
       name: 'passages',
       component: indexPassage
     },
     {
-      path: '/article/:id',
+      path: '/p/:id',
       name: 'display',
       component: display
     },
     {
       path: '/post',
       name: 'post',
-      component: post
+      component: post,
+      beforeEnter : (to, from, next) => {
+        if(window.$_proxy && window.$_proxy(null, 'get')) {
+          next();
+        }else{
+          next({
+            path: '/login'
+          })
+        }
+      }
     }
   ]
 })

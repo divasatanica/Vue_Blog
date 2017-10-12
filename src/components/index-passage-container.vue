@@ -19,6 +19,7 @@
     <el-pagination
       small
       layout="prev, pager, next"
+      :current-page="page"
       :total="total" :page-size="5" v-on:current-change="moreArticle">
     </el-pagination>
   </div>
@@ -39,17 +40,20 @@ export default {
   },
   methods: {
     req() {
+        this.page = +this.$route.params.page;
         this.mode = 1;
         this.date = '';
-        this.$http.get('http://comacc.top/article/newest/0').then(this.renderPassages, (err) => {
+        this.$http.get(`http://localhost:3000/article/newest/${this.$route.params.page-1}`).then(this.renderPassages, (err) => {
           throw err;
         }).catch(this.alertTheError)
     },
     moreArticle(param) {
         if(this.mode == 1) {
-          this.$http.get(`http://comacc.top/article/newest/${param-1}`).then(this.renderPassages, err => {
+          this.$router.push({name: 'passages', params: {page: param}})
+          this.$http.get(`http://localhost:3000/article/newest/${param-1}`).then(this.renderPassages, err => {
             throw err;
           }).catch(this.alertTheError)
+
         }
         else if(this.mode == 2) {
           this.filterByDate(param);
@@ -63,7 +67,7 @@ export default {
       const startDate = dateParam.startDate;
       const endDate = dateParam.endDate;
       this.mode = 2;
-      this.$http.post('http://comacc.top/article/filtering', {
+      this.$http.post('http://localhost:3000/article/filtering', {
         startDate,
         endDate,
         page: param
@@ -74,7 +78,7 @@ export default {
     filterByTag(tag, param = 1) {
       this.tag2filter = tag;
       this.mode = 3;
-      this.$http.post('http://comacc.top/article/filtering', {
+      this.$http.post('http://localhost:3000/article/filtering', {
         tag,
         page: param
       }).then(this.renderPassages, err => {

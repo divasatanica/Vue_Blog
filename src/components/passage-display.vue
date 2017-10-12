@@ -26,11 +26,11 @@ export default {
   },
   methods: {
     back() {
-      this.$router.push({path: '/article'})
+      window.history.back();
     }
   },
   created() {
-    this.$http.get(`http://comacc.top/article/display/${this.$route.params.id}`).then(result => {
+    this.$http.get(`http://localhost:3000/article/display/${this.$route.params.id}`).then(result => {
       this.article = result.data;
     }); 
   }

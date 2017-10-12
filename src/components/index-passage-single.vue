@@ -11,7 +11,7 @@ export default {
   data() {
     return {
       nav: {
-        path: `article/${this.article._id}`
+        path: `/p/${this.article._id}`
       }
     }
   },
@@ -51,12 +51,13 @@ export default {
   .time {
     display: block;
     font: {
+      family: 'Microsoft Yahei';
       weight: lighter;
       size: 1.2rem;
     }
   }
   .tags {
-    margin-top: 1rem;   
+    /* margin-top: 1rem; */   
     color: #707070;
   }
   .tag {
