@@ -30,7 +30,7 @@ export default {
     login() {
       if(this.user && this.pswd) {
         let data = {name: this.user, password: this.pswd};
-        this.$http.post('http://comacc.top/login/', data, {credentials: true}).then((response) => {
+        this.$http.post('http://localhost:3000/login/', data, {credentials: true}).then((response) => {
           this.$emit('loginner', this.user);
           window.$_proxy(true, 'set')
           this.back();

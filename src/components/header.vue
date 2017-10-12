@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1 class="cusFont">Dunkelheit</h1>
-    <p class="cusFont"><slot></slot></p>
+    <h1 class="custom-font">Dunkelheit</h1>
+    <p class="custom-font"><slot></slot></p>
   </div>
 </template>
 

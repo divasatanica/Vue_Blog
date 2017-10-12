@@ -17,13 +17,13 @@
 
 <script>
 export default {
-  props: ['hasLogged'],
+  // props: ['hasLogged'],
   data () {
     return {
       msg: 'Login',
       loggedName: '',
       hasOpen: false,
-      //hasLogged: false,
+      hasLogged: false,
       passageClass: [{id: 0, text: '学习'}, {id: 1, text: '吹水'}],
       dropdownClass: {'dropdown-open': false},
       topRightLink: {name:'login', path: '/login'}
@@ -44,6 +44,9 @@ export default {
     logout() {
       if(window.confirm('Sure to QUIT?')) {
         this.hasLogged = false;
+        if(this.$route.path.indexOf('post') > -1) {
+          this.$router.push({path: '/article/1'});
+        }
       }
     }
 
