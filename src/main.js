@@ -4,16 +4,24 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import axios from 'axios'
-import ElementUI from 'element-ui'
+import {DatePicker, Upload, Pagination, Message, Button} from 'element-ui'
 import hljs from 'highlight.js'
 import 'element-ui/lib/theme-default/index.css'
 import '@/assets/vs2015.css'
+import '@/assets/custom-font.css';
 
 Vue.config.productionTip = false;
 
-Vue.use(ElementUI);
+Vue.use(DatePicker);
+Vue.use(Upload);
+Vue.use(Pagination);
+Vue.use(Button);
 
 Vue.prototype.$http = axios;
+Vue.prototype.$message = Message;
+
+
+axios.defaults.withCredentials = true;
 
 Vue.directive('highlight',function (el) {
   let blocks = el.querySelectorAll('pre code');
