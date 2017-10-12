@@ -1,13 +1,14 @@
 <template>
   <div class="nav-bar">
     <ul class="entries">
-      <li class="entry"><router-link to="/">首页</router-link></li>
-      <li class="entry" v-on:mouseenter='openMenu()' v-on:mouseleave='closeMenu()'><router-link to="/article">文章</router-link></li>
-      <li class="entry">脑洞</li>
+      <li class="entry "><router-link to="/" class="custom-font">Index</router-link></li>
+      <li class="entry " v-on:mouseenter='openMenu()' v-on:mouseleave='closeMenu()'><router-link to="/article/1" class="custom-font">Article</router-link></li>
+      <!-- <li class="entry custom-font">Work</li>
+      <li class="entry custom-font">About</li> -->
     </ul>
-    <span class="username">{{loggedName}}</span>
-    <button class="login cusFont" v-if="hasLogged"><router-link :to="{path: '/post'}">发布文章</router-link></button>
-    <button class="login cusFont"><router-link :to="topRightLink" class="login-link">{{msg}}</router-link></button>
+    <button class="login" v-if="hasLogged"><router-link :to="{path: '/post'}" class="custom-font">POST</router-link></button>
+    <button class="login" v-if="!hasLogged"><router-link v-bind:to="topRightLink" class="login-link custom-font">LOGIN</router-link></button>
+    <button class="login login-link custom-font" v-else @click="logout">LOGOUT</button>
     <transition name="el-zoom-in-center" >
       <router-view name="login" v-on:loginner="login"></router-view>
     </transition>
@@ -16,12 +17,13 @@
 
 <script>
 export default {
+  props: ['hasLogged'],
   data () {
     return {
-      msg: '登录',
+      msg: 'Login',
       loggedName: '',
       hasOpen: false,
-      hasLogged: false,
+      //hasLogged: false,
       passageClass: [{id: 0, text: '学习'}, {id: 1, text: '吹水'}],
       dropdownClass: {'dropdown-open': false},
       topRightLink: {name:'login', path: '/login'}
@@ -35,11 +37,16 @@ export default {
       this.dropdownClass['dropdown-open'] = false;
     },
     login(data) {
-      this.msg = '登出';
+      this.msg = 'LOGOUT';
       this.hasLogged = true;
       this.loggedName = data;
-      this.topRightLink = {name: 'login', path: 'logout'};
+    },
+    logout() {
+      if(window.confirm('Sure to QUIT?')) {
+        this.hasLogged = false;
+      }
     }
+
   }
 }
 </script>
@@ -64,7 +71,7 @@ export default {
     position: absolute;
     top: 0;
     width: 100%;
-    min-width: 1024px;
+    min-width: 1000px;
     height: 60px;
     box-shadow: 0 9px 10px 0 rgba(39, 39, 39, 0.5);
     background: {
@@ -91,7 +98,7 @@ export default {
     transition: background-color 0.3s ease;
   }
   .entry:hover {
-    background-color: rgba(39,39,39,0.5);
+    background-color: rgba(220,220,220,0.3);
   }
   .dropdown {
     position: absolute;
@@ -110,13 +117,13 @@ export default {
     line-height: 40px;
     text-align: center;
     background: {
-      color: rgba(39,39,39,0.5);;
+      color: rgba(39,39,39,0.5);
     }
     color: #fff;
     transition: all 0.3s ease;
   }
   .sub-entry:hover {
-    background-color: rgba(100,100,100,0.5);
+    background-color: rgba(220,220,220,0.3);
   } 
   /* username */
   span.username {
@@ -137,14 +144,15 @@ export default {
     background-color: rgba(0,0,0,0);
   }
   .login:nth-of-type(1) {
-    right: 10%;
+    right: 12%;
   }
   .login:nth-of-type(2) {
     right: 5%;
+    width: auto;
   }
   .login:hover {
     color: #fff;
-    background-color: rgba(20,20,20,0.3);
+    background-color: rgba(220,220,220,0.3);
   }
   button {
     border: none;

@@ -32,6 +32,7 @@ export default {
         let data = {name: this.user, password: this.pswd};
         this.$http.post('http://comacc.top/login/', data, {credentials: true}).then((response) => {
           this.$emit('loginner', this.user);
+          window.$_proxy(true, 'set')
           this.back();
         }).catch((err) => {
           console.error(err);
