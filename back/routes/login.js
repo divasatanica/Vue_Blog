@@ -9,8 +9,16 @@ router.post('/', (req, res) => {
   let param = req.body;
   let whereStr = {"name": param.name};
   if(req.cookies.name){
-      res.header("Access-Control-Allow-Credentials","true");
-      res.sendStatus(200);
+    mongo.connect(DB_CONN_STR, (err, db) => {
+      dbhandle.findData(db, (result) => {
+        result.forEach((rec) => {
+          if(rec.name == req.cookies.name) {
+            res.header("Access-Control-Allow-Credentials","true");
+            res.sendStatus(200);
+          }
+        })
+      }, {}, "user")
+    })
   }
   else if(!param.name) {
     res.sendStatus(400);
@@ -19,7 +27,6 @@ router.post('/', (req, res) => {
     let date = new Date();
     mongo.connect(DB_CONN_STR, (err, db) => {
       dbhandle.findData(db, (result) => {
-        console.log(result);
         if(result[0].password !== param.password) {
           res.sendStatus(403);
         }
