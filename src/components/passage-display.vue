@@ -38,10 +38,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  img {
-    width: 75%;
-    margin: 0 auto;
-  }
   h1 {
     font: {
       size: 2rem;
