@@ -118,7 +118,11 @@ if (config.build.productionGzip) {
 
 if (config.build.bundleAnalyzerReport) {
   var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-  webpackConfig.plugins.push(new BundleAnalyzerPlugin())
+  webpackConfig.plugins.push(new BundleAnalyzerPlugin(
+    {
+      analyzerPort: 9000
+    }
+  ))
 }
 
 module.exports = webpackConfig
