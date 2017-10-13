@@ -1,7 +1,7 @@
 <template>
   <div class="preview" >
     <h1>{{header}}</h1>
-    <div v-html="content"></div>
+    <div v-html="content" highlight></div>
   </div>
 </template>
 

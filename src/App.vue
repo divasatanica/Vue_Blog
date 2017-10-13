@@ -95,6 +95,12 @@ export default {
     margin-bottom: 1rem;
     text-indent: 1.5rem;
   }
+  .marked {
+      img {
+        width: 75%;
+        margin: 0 auto;
+      }
+  }
   .custom-font {
     font-family:'Akzidenz-Grotesd34d45b8c18da7',  Microsoft Yahei;
   }
