@@ -89,8 +89,8 @@ export default {
       if(!this.date || !this.date[0] || !this.date[1]) {return;}
       let startDate = this.date[0];
       let endDate = this.date[1];
-      startDate = `${startDate.getFullYear()}${((startDate.getMonth()+1)<10)?`0${startDate.getMonth()+1}`:`${startDate.getMonth()}`}${(startDate.getDate()<10)?`0${startDate.getDate()}`:`${startDate.getDate()}`}000`;
-      endDate = `${endDate.getFullYear()}${((endDate.getMonth()+1)<10)?`0${endDate.getMonth()+1}`:`${endDate.getMonth()}`}${(endDate.getDate()<10)?`0${endDate.getDate()}`:`${endDate.getDate()}`}000`;
+      startDate = `${startDate.getFullYear()}${((startDate.getMonth()+1)<10)?`0${startDate.getMonth()+1}`:`${startDate.getMonth()+1}`}${(startDate.getDate()<10)?`0${startDate.getDate()}`:`${startDate.getDate()}`}000`;
+      endDate = `${endDate.getFullYear()}${((endDate.getMonth()+1)<10)?`0${endDate.getMonth()+1}`:`${endDate.getMonth()+1}`}${(endDate.getDate()<10)?`0${endDate.getDate()}`:`${endDate.getDate()}`}000`;
       return {startDate, endDate};
     },
     renderPassages(res) {
