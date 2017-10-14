@@ -10,8 +10,9 @@
 </template>
 
 <script>
-import blogHeader from '@/components/header'
-import navBar from '@/components/nav-bar'
+import blogHeader from '@/components/common/header/header'
+import navBar from '@/components/common/nav-bar'
+import api from './data/api'
 
 
 export default {
@@ -46,7 +47,7 @@ export default {
       }
     })();
     try {
-      this.$http.post('http://localhost:3000/login/', {}, {credentials: true}).then((response) => {
+      this.$http.post(`${api.address}/login`, {}, {credentials: true}).then((response) => {
         this.logged = true;
         window.$_proxy(true, 'set');
       }, (response) => {
@@ -96,6 +97,15 @@ export default {
     text-indent: 1.5rem;
   }
   .marked {
+      li {
+        font-size: 1.1rem;
+      }
+      p {
+        font-size: 1.1rem;
+      }
+      pre code {
+        font-size: 1.5rem;
+      }
       img {
         width: 75%;
         margin: 0 auto;

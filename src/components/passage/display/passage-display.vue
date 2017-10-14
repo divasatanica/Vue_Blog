@@ -8,6 +8,8 @@
 </template>
 
 <script>
+import api from '../../../data/api'
+
 export default {
   data() {
     return {
@@ -30,7 +32,7 @@ export default {
     }
   },
   created() {
-    this.$http.get(`http://localhost:3000/article/display/${this.$route.params.id}`).then(result => {
+    this.$http.get(`${api.address}/article/display/${this.$route.params.id}`).then(result => {
       this.article = result.data;
     }); 
   }

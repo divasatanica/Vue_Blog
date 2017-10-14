@@ -19,6 +19,8 @@
 </template>
 
 <script>
+import api from '../../../data/api'
+
 export default {
   data() {
     return {
@@ -30,7 +32,7 @@ export default {
     login() {
       if(this.user && this.pswd) {
         let data = {name: this.user, password: this.pswd};
-        this.$http.post('http://localhost:3000/login/', data, {credentials: true}).then((response) => {
+        this.$http.post(`${api.address}/login/`, data, {credentials: true}).then((response) => {
           this.$emit('loginner', this.user);
           window.$_proxy(true, 'set')
           this.back();

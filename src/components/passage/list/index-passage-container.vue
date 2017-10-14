@@ -26,7 +26,8 @@
 </template>
 
 <script>
-import single from '@/components/index-passage-single'
+import single from '@/components/passage/list/index-passage-single'
+import api from '../../../data/api'
 export default {
   data() {
     return {
@@ -43,14 +44,14 @@ export default {
         this.page = +this.$route.params.page;
         this.mode = 1;
         this.date = '';
-        this.$http.get(`http://localhost:3000/article/newest/${this.$route.params.page-1}`).then(this.renderPassages, (err) => {
+        this.$http.get(`${api.address}/article/newest/${this.$route.params.page-1}`).then(this.renderPassages, (err) => {
           throw err;
         }).catch(this.alertTheError)
     },
     moreArticle(param) {
         if(this.mode == 1) {
           this.$router.push({name: 'passages', params: {page: param}})
-          this.$http.get(`http://localhost:3000/article/newest/${param-1}`).then(this.renderPassages, err => {
+          this.$http.get(`${api.address}/article/newest/${param-1}`).then(this.renderPassages, err => {
             throw err;
           }).catch(this.alertTheError)
 
@@ -67,7 +68,7 @@ export default {
       const startDate = dateParam.startDate;
       const endDate = dateParam.endDate;
       this.mode = 2;
-      this.$http.post('http://localhost:3000/article/filtering', {
+      this.$http.post(`${api.address}/article/filtering`, {
         startDate,
         endDate,
         page: param
@@ -78,7 +79,7 @@ export default {
     filterByTag(tag, param = 1) {
       this.tag2filter = tag;
       this.mode = 3;
-      this.$http.post('http://localhost:3000/article/filtering', {
+      this.$http.post(`${api.address}/article/filtering`, {
         tag,
         page: param
       }).then(this.renderPassages, err => {

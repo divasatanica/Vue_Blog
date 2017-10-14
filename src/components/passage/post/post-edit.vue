@@ -15,7 +15,7 @@
 		<el-upload
 			class="upload-image"
 			ref="upload"
-			action="http://comacc.top/upload/image"
+			:action="`${api}/upload/image/`"
 			:on-preview="handlePreview"
 			:on-remove="handleRemove"
 			:on-success="setURL"
@@ -34,6 +34,7 @@
 const marked = require('marked');
 
 export default {
+	props: ['api'],
 	data() {
 		return {
 			selected: [],
@@ -43,7 +44,7 @@ export default {
 			content: '',
 			header: '',
 			fileList: [],
-			count: 0
+			count: 0,
 		}
 	},
 	methods: {
@@ -121,7 +122,7 @@ export default {
 			data.clock = `${date.getHours()}:`+ (date.getMinutes()<10?'0':'') + `${date.getMinutes()}`;
 			data.tags = JSON.stringify(arr);
 			data.count = this.count;
-			this.$http.post('http://localhost:3000/article/new', data).then((result) => {
+			this.$http.post(`${this.api}/article/new`, data).then((result) => {
 				this.header = '';
 				this.content = '';
 				this.selected = [];
@@ -138,7 +139,7 @@ export default {
 		}
 	},
 	mounted() {
-		this.$http.get('http://comacc.top/article/newest/0').then(result => {
+		this.$http.get(`${this.api}/article/newest/0`).then(result => {
 			let date = new Date();
 			let o = result.data.article;
 			date = String(date.getFullYear()) + ((date.getMonth()+1)>9?'':'0') + String(date.getMonth()+1) + (date.getDate()>9?'':'0') + String(date.getDate());
@@ -149,7 +150,7 @@ export default {
 				this.count = 0;
 			}
 		})
-		this.$http.get('http://comacc.top/index/getTags').then((result)=>{
+		this.$http.get(`${this.api}/index/getTags`).then((result)=>{
 			for(let i in result.data){
 				let a = {};
 				a.value = result.data[i].tag;
