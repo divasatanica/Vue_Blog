@@ -35,7 +35,7 @@ export default {
     }
   },
   created() {
-    window.$_proxy = (function() {
+    /* window.$_proxy = (function() {
       let isLogin = false;
       return function(flag, action) {
         if(action == 'set') {
@@ -45,11 +45,11 @@ export default {
           return isLogin;
         }
       }
-    })();
+    })(); */
     try {
       this.$http.post(`${api.address}/login`, {}, {credentials: true}).then((response) => {
         this.logged = true;
-        window.$_proxy(true, 'set');
+        this.$_proxy(true, 'set');
       }, (response) => {
         console.log(response);
       }).catch((err) => {

@@ -72,7 +72,6 @@ export default {
 		},
 		setURL(res) {
 			var rie; //全局变量
-			console.log(res);
 			let _url = res.files.url;
 			let str = `\n\n![输入图片描述](${_url})`;
 			let _this = this;
@@ -143,7 +142,6 @@ export default {
 		}
 	},
 	mounted() {
-		alert(window.sessionStorage.user);
 		this.$http.get(`${this.api}/article/newest/0`).then(result => {
 			let date = new Date();
 			let o = result.data.article;

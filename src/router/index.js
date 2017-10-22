@@ -37,7 +37,7 @@ export default new Router({
       name: 'post',
       component: resolve => require(['../components/passage/post/post-container.vue'], resolve),
       beforeEnter : (to, from, next) => {
-        if(window.$_proxy && window.$_proxy(null, 'get')) {
+        if(this.a.app.$_proxy && this.a.app.$_proxy(null, 'get')) {
           next();
         }else{
           next({

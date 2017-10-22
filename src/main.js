@@ -24,6 +24,19 @@ Vue.use(Button);
 Vue.prototype.$http = axios;
 Vue.prototype.$message = Message;
 
+// 用一个闭包去保存登录状态
+Vue.prototype.$_proxy = (function() {
+  let isLogin = false;
+  return function(flag, action) {
+    if(action == 'set') {
+      isLogin = flag;
+    }
+    else if(action == 'get') {
+      return isLogin;
+    }
+  }
+})();
+
 
 axios.defaults.withCredentials = true;
 

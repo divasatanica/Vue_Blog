@@ -43,6 +43,7 @@ export default {
     },
     logout() {
       if(window.confirm('Sure to QUIT?')) {
+        this.$_proxy(false, 'set');
         this.loggedin = false;
         this.$emit('logout');
         if(this.$route.path.indexOf('post') > -1) {
