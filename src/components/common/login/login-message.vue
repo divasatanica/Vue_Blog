@@ -36,6 +36,8 @@ export default {
           this.$emit('loginner', this.user);
           window.$_proxy(true, 'set')
           this.back();
+          window.sessionStorage.setItem('user', this.user);
+          this.$message(`Current User: ${this.user}`);
         }).catch((err) => {
           console.error(err);
         })

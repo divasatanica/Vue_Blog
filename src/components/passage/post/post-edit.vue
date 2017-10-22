@@ -15,7 +15,7 @@
 		<el-upload
 			class="upload-image"
 			ref="upload"
-			:action="`${api}/upload/image/`"
+			:action="`${api}/upload/qiniu/`"
 			:on-preview="handlePreview"
 			:on-remove="handleRemove"
 			:on-success="setURL"
@@ -45,6 +45,7 @@ export default {
 			header: '',
 			fileList: [],
 			count: 0,
+			author: ''
 		}
 	},
 	methods: {
@@ -69,9 +70,10 @@ export default {
 		handlePreview(file) {
 			console.log(file);
 		},
-		setURL(url) {
+		setURL(res) {
 			var rie; //全局变量
-			let _url = url[0].url;
+			console.log(res);
+			let _url = res.files.url;
 			let str = `\n\n![输入图片描述](${_url})`;
 			let _this = this;
 			GetCursor();
@@ -98,6 +100,7 @@ export default {
 							tmpStr = _this.$refs.text.value;
 					let reg = new RegExp(/\n$/g);
 					let startStr = tmpStr.substring(0, startPos)
+					//若光标已在新行则直接换行插入，若在已有文字的行，则换两行插入保证中间空一行
 					if(reg.test(startStr)){
 						str = `\n![输入图片描述](${_url})`;
 					}
@@ -117,6 +120,7 @@ export default {
 			for(let i in this.selected) {
 				arr.push(this.selected[i].value);
 			}
+			data.author = this.author;
 			data.header = this.header;
 			data.passage2mark = marked(this.content);
 			data.clock = `${date.getHours()}:`+ (date.getMinutes()<10?'0':'') + `${date.getMinutes()}`;
@@ -139,6 +143,7 @@ export default {
 		}
 	},
 	mounted() {
+		alert(window.sessionStorage.user);
 		this.$http.get(`${this.api}/article/newest/0`).then(result => {
 			let date = new Date();
 			let o = result.data.article;

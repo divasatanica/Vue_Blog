@@ -2,6 +2,7 @@
   <div class="passage-container">
     <div class="go-back el-icon-arrow-left" @click="back"></div>
     <h1>{{article.header}}</h1>
+    <h2 class="author">via. {{article.author}}</h2>
     <span>{{article.timeStamp | geneTime}} {{article.clock}}</span>
     <div v-html="article.marked" class="marked" v-highlight></div>
   </div>
@@ -72,5 +73,13 @@ export default {
   }
   .go-back:hover {
     background-color: rgba(200,200,200,0.5);
+  }
+  .author {
+    font: {
+      weight: lighter;
+    }
+    text: {
+      indent: 0;
+    }
   }
 </style>

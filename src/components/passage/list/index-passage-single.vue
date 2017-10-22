@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <span><h1><router-link :to="nav">{{article.header}}</router-link></h1></span><span class="time">{{article.timeStamp | geneTime}} {{article.clock}}</span>
+    <span><h1><router-link :to="nav">{{article.header}}</router-link></h1></span><span class="tag">@{{article.author}}</span><span class="time">{{article.timeStamp | geneTime}} {{article.clock}}</span>
     <div class="tags"><span class="tag" v-for="(item, index) in article.tag" v-bind:key="item.timeStamp" v-on:click="filterTags(item)">#{{item}}</span></div>
   </div>
 </template>

@@ -65,7 +65,7 @@ export default {
 </script>
 
 <style lang="scss">
-  * {
+  body,html,p,div,ol,ul {
     margin: 0;
     padding: 0;
   }
