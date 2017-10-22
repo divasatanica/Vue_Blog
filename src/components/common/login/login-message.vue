@@ -33,11 +33,18 @@ export default {
       if(this.user && this.pswd) {
         let data = {name: this.user, password: this.pswd};
         this.$http.post(`${api.address}/login/`, data, {credentials: true}).then((response) => {
-          this.$emit('loginner', this.user);
-          window.$_proxy(true, 'set')
-          this.back();
-          window.sessionStorage.setItem('user', this.user);
-          this.$message(`Current User: ${this.user}`);
+          const data = response.data;
+          if(data.code == 1) {
+            this.$emit('loginner', this.user);
+            // window.$_proxy(true, 'set')
+            this.$_proxy(true, 'set');
+            this.back();
+            window.sessionStorage.setItem('user', this.user);
+            this.$message(`${data.message}, Current User: ${this.user}`);
+          }
+          else {
+            this.$message.error(`${data.message}`)
+          }
         }).catch((err) => {
           console.error(err);
         })
