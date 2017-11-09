@@ -35,21 +35,13 @@ export default {
     }
   },
   created() {
-    /* window.$_proxy = (function() {
-      let isLogin = false;
-      return function(flag, action) {
-        if(action == 'set') {
-          isLogin = flag;
-        }
-        else if(action == 'get') {
-          return isLogin;
-        }
-      }
-    })(); */
     try {
       this.$http.post(`${api.address}/login`, {}, {credentials: true}).then((response) => {
-        this.logged = true;
-        this.$_proxy(true, 'set');
+        const data = response.data
+        if(data.code == 1) {
+          this.logged = true;
+          this.$_proxy(true, 'set');
+        }
       }, (response) => {
         console.log(response);
       }).catch((err) => {
