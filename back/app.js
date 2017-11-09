@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static('public'));
 
-const whitelist = [undefined, 'http://localhost:8080', 'http://comacc.top', 'http://localhost:3000'];
+const whitelist = [undefined, 'http://localhost:8080', 'http://comacc.top', 'http://localhost:3000', 'https://comacc.top'];
 const corsOptions = {
 	origin: (origin, callback) => {
 		 if (whitelist.indexOf(origin) !== -1) {
