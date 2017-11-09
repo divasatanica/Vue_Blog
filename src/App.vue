@@ -5,7 +5,6 @@
       <blog-header>WHO'S YOUR DADDY</blog-header>
     </div>
     <router-view></router-view>
-    
   </div>
 </template>
 
@@ -62,9 +61,10 @@ export default {
     padding: 0;
   }
   body {
-    min-width: 1000px;
     background: {
-      color: #303030;
+      // image: url('https://cdn.comacc.top/blog/webp0f60c723ba3ba770d02b3bb5fa32f205a171d195645da0-0JNafB_fw658.jpg?imageMogr2/thumbnail/1920x1080/format/webp/blur/1x0/quality/75|imageslim');
+      size: contain;
+      color: #eee;
     }
 
   }
@@ -78,7 +78,14 @@ export default {
     color: #e5ece9;
   }
   .root-container {
-    margin-top: 80px;
+    // margin-top: 80px;
+    height: 360px;
+    background: url('https://cdn.comacc.top/blog/webpwil-stewart-23388.jpg?imageMogr2/thumbnail/1920x1080/format/webp/blur/1x0/quality/75|imageslim');
+    background-size: cover;
+    background-position: 50% 70%;
+    @media screen and (max-width: 705px) {
+      background-size: cover;
+    }
   }
   a, p, div, pre, code {
     font-family:'Akzidenz-Grotesd34d45b8c18da7', Microsoft Yahei;
@@ -130,35 +137,35 @@ export default {
     margin-top: 20px;
     margin-bottom: 20px;
     text-align: center;
+    @media screen and (max-width: 700px) {
+      margin-top: 110px;
+    }
   }
   .passage-func-zone+.el-pagination{
     .btn-prev, .btn-next, button.disabled {
       color: #29272b;
-      background-color: #b1b1b1;
+      background-color: #d5d5d5;
     }
     button:hover {
       color: #eee;
     }
   }
-  .passage-func-zone+.el-page li:hover {
-    // color: #29272b;
-  }
   .passage-func-zone+.el-pagination--small {
     .el-pager {
       li {
         border-radius: 0;
-        background: #b1b1b1;
+        background: #d5d5d5;
       }
       li:hover {
         color: #eee;
       }
       li.active {
-        border-color: #212121;
-        background-color: #212121;
+        border-color: #d5d5d5;
+        // background-color: #212121;
       }
     }
   }
-  .el-message {
+/*   .el-message {
     background-color: rgba(120,120,120,0.7);
     .el-message__group {
       p {
@@ -176,8 +183,8 @@ export default {
     &:focus {
       border: none;
     }
-  }
-  script[type='text/javascript']+.el-picker-panel.el-date-range-picker {
+  } */
+ /*  script[type='text/javascript']+.el-picker-panel.el-date-range-picker {
     border: none;
     box-shadow: none;
     .el-picker-panel__content {
@@ -208,5 +215,5 @@ export default {
     td.prev-month, td.next-month { 
       color: #29272b;
     }
-  }
+  } */
 </style>

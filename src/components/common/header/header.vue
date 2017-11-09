@@ -19,7 +19,7 @@ export default {
 <style lang="scss" scoped>
   div {
     padding: {
-      top: 50px;
+      top: 80px;
       left: 50px;
     }
     width: 75%;

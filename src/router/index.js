@@ -16,6 +16,11 @@ export default new Router({
   mode: 'history',
   routes: [
     {
+      path: '/',
+      name: 'index',
+      component: resolve => require(['../components/index/index.vue'], resolve)
+    },
+    {
       path: '/login',
       name: 'login',
       components: {

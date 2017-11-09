@@ -46,7 +46,9 @@ export default {
     min-width: 20rem;
     height: 82px;
     padding: 10px 16px;
-    background-color: rgba(189,184,180,0.7);
+    @media screen and (max-width: 690px) {
+      padding: 8px 10px;
+    }
   }
   .time {
     display: block;

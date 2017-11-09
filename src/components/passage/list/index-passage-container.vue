@@ -138,7 +138,7 @@ export default {
     width: 100%;
     height: 40px;
     background: {
-      color: #494949;
+      color: transparent;
     }
     border: {
       top-left-radius: 5px;
@@ -153,7 +153,7 @@ export default {
         left: .5rem;
         right: .5rem;
       }
-      color: #fff;
+      color: #29272b;
       transition: all 0.2s ease;
       cursor: pointer;
       &:hover {
@@ -164,32 +164,42 @@ export default {
   .passage-func-zone {
     display: flex;
     height: 510px;
+    @media screen and (max-width: 700px) {
+      flex-direction: column;
+    }
   }
   .passages {
     width: 60%;
     border: none;
     height: 510px;
-    background-color: rgba(195,190,186,0.7);
+    background-color: rgba(255,255,255,0.4);
+    @media screen and (max-width: 700px) {
+      width: 100%;
+    }
   }
   .side-bar {
     width: 40%;
     border: none;
-    background-color: rgba(195,190,186,0.7);
-    border: {
-      left: 1px solid #a0a0a0;
+    background-color: rgba(255,255,255,0.4);
+    @media screen and (max-width: 700px) {
+      width: 100%;
     }
+    /* border: {
+      left: 1px solid #a0a0a0;
+    } */
   }
   .el-date-editor {
-    margin-left: 2rem;
+    // margin-left: 2rem;
   }
   .filter-date {
     padding-left: 1rem;
     margin-top: 25px;
+    margin-bottom: 25px;
   }
   .filter-date-btn {
     width: 6rem;
     height: 2.2rem;
-    margin-left: 2rem;
+    // margin-left: 2rem;
     margin-right: 1rem;
     color: #fff;
     font-size: 1rem;

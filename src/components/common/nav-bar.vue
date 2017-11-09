@@ -1,14 +1,18 @@
 <template>
   <div class="nav-bar">
-    <ul class="entries">
-      <li class="entry "><router-link to="/" class="custom-font">Index</router-link></li>
-      <li class="entry " v-on:mouseenter='openMenu()' v-on:mouseleave='closeMenu()'><router-link to="/article/1" class="custom-font">Article</router-link></li>
-      <!-- <li class="entry custom-font">Work</li>
-      <li class="entry custom-font">About</li> -->
-    </ul>
-    <button class="login" v-if="hasLogged || loggedin"><router-link :to="{path: '/post'}" class="custom-font">POST</router-link></button>
-    <button class="login" v-if="!hasLogged && !loggedin"><router-link v-bind:to="topRightLink" class="login-link custom-font">LOGIN</router-link></button>
-    <button class="login login-link custom-font" v-else @click="logout">LOGOUT</button>
+    <div class="nav-container">
+      <ul class="left-entries">
+        <li class="entry left-float"><router-link to="/" class="custom-font">Index</router-link></li>
+        <li class="entry left-float" v-on:mouseenter='openMenu()' v-on:mouseleave='closeMenu()'><router-link to="/article/1" class="custom-font">Article</router-link></li>
+        <!-- <li class="entry custom-font">Work</li>
+        <li class="entry custom-font">About</li> -->
+      </ul>
+      <ul class="right-entries">
+        <li class="entry right-float" v-if="hasLogged || loggedin"><button class="login" ><router-link :to="{path: '/post'}" class="custom-font">POST</router-link></button><li>
+        <li class="entry right-float" v-if="!hasLogged && !loggedin"><button class="login" ><router-link v-bind:to="topRightLink" class="login-link custom-font">LOGIN</router-link></button></li>
+        <li class="entry right-float" v-else><button class="login login-link custom-font"  @click="logout">LOGOUT</button></li>
+      </ul>
+    </div>
     <transition name="el-zoom-in-center" >
       <router-view name="login" v-on:loginner="login"></router-view>
     </transition>
@@ -64,6 +68,12 @@ export default {
       family: Microsoft Yahei
     }
   }
+  .float-left {
+    float: left;
+  }
+  .float-right {
+    float: right;
+  }
   li {
     list-style: none;
   }
@@ -76,31 +86,57 @@ export default {
     position: absolute;
     top: 0;
     width: 100%;
-    min-width: 1000px;
     height: 60px;
     box-shadow: 0 9px 10px 0 rgba(39, 39, 39, 0.5);
+    transform: translateY(-50px);
+    transition: all 0.3s ease-in-out;
     background: {
-      color: #1e1e1e;
+      color: rgba(50,50,50,0.5);
+    }
+  }
+  .nav-bar:hover {
+    transform: none;
+  }
+  /* navigator-container */
+  .nav-container {
+    display: flex;
+    padding: {
+      left: 100px;
+      right: 100px;
+    }
+    @media screen and (max-width: 600px) {
+      padding: {
+        left: 30px;
+        right: 30px;
+      }
     }
   }
   /* navigator-entries */
-  .entries {
-    width: 100%;
-    margin-left: 12.5%;
+  .left-entries {
+    display: flex;
+    width: 50%;
     font: {
       size: 1.4rem;
       weight: lighter;
     }
     color: #e5ece9;
+    overflow: hidden;
+  }
+  .right-entries {
+    display: flex;
+    justify-content: flex-end;
+    width: 50%;
+    overflow: hidden;
   }
   .entry {
-    float: left;
-    width: 10%;
+    width: 20%;
+    min-width: 60px;
     height: 60px;
     line-height: 60px;
     text-align: center;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-size: 1.4rem;
   }
   .entry:hover {
     background-color: rgba(220,220,220,0.3);
@@ -141,7 +177,6 @@ export default {
   }
   /* login-button */
   .login {
-    position: absolute;
     height: 60px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -155,22 +190,16 @@ export default {
     right: 5%;
     width: auto;
   }
-  .login:hover {
-    color: #fff;
-    background-color: rgba(220,220,220,0.3);
-  }
   button {
     border: none;
     border-radius: 3px;
     padding: 5px 8px;
-    font: {
-      size: 1.2rem;
-    }
+    font-size: 1.4rem;
   }
   .login-link {
     display: inline-block;
-    width: 100%;
     height: 100%;
     line-height: 50px;
   }
+
 </style>

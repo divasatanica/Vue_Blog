@@ -10,9 +10,10 @@ import Button from '../node_modules/element-ui/lib/button'
 import Message from '../node_modules/element-ui/lib/message'
 import Pagination from '../node_modules/element-ui/lib/pagination'
 import hljs from 'highlight.js'
+import Icon from 'vue-svg-icon/Icon.vue'
 import 'element-ui/lib/theme-default/index.css'
-import '@/assets/vs2015.css'
-import '@/assets/custom-font.css';
+import '@/assets/style/vs2015.css'
+import '@/assets/style/custom-font.css';
 
 Vue.config.productionTip = false;
 
@@ -20,6 +21,7 @@ Vue.use(DatePicker);
 Vue.use(Upload);
 Vue.use(Pagination);
 Vue.use(Button);
+Vue.component('icon', Icon)
 
 Vue.prototype.$http = axios;
 Vue.prototype.$message = Message;
