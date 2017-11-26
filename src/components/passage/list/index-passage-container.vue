@@ -188,9 +188,6 @@ export default {
       left: 1px solid #a0a0a0;
     } */
   }
-  .el-date-editor {
-    // margin-left: 2rem;
-  }
   .filter-date {
     padding-left: 1rem;
     margin-top: 25px;

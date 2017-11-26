@@ -88,14 +88,10 @@ export default {
     width: 100%;
     height: 60px;
     box-shadow: 0 9px 10px 0 rgba(39, 39, 39, 0.5);
-    transform: translateY(-50px);
     transition: all 0.3s ease-in-out;
     background: {
       color: rgba(50,50,50,0.5);
     }
-  }
-  .nav-bar:hover {
-    transform: none;
   }
   /* navigator-container */
   .nav-container {

@@ -80,7 +80,7 @@ export default {
   .root-container {
     // margin-top: 80px;
     height: 360px;
-    background: url('https://cdn.comacc.top/blog/webpwil-stewart-23388.jpg?imageMogr2/thumbnail/1920x1080/format/webp/blur/1x0/quality/75|imageslim');
+    background: url('https://cdn.comacc.top/blog/webpwebpwil-stewart-23388-handled.jpg');
     background-size: cover;
     background-position: 50% 70%;
     @media screen and (max-width: 705px) {
