@@ -76,7 +76,7 @@ var webpackConfig = merge(baseWebpackConfig, {
           module.resource &&
           /\.js$/.test(module.resource) &&
           module.resource.indexOf(
-            path.join(__dirname, '../node_modules')
+            path.join(__dirname,  '../node_modules')
           ) === 0
         )
       }
@@ -93,6 +93,10 @@ var webpackConfig = merge(baseWebpackConfig, {
         from: path.resolve(__dirname, '../static'),
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
+      },
+      {
+        from: path.resolve(__dirname, '../dll/dll.js'),
+        to: path.join(config.build.assetsSubDirectory, '/js/')
       }
     ])
   ]
