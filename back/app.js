@@ -52,14 +52,11 @@ app.options('*', cors({
 }));
 
 
-app.use('/index', index);
-app.use('/upload', upload);
-app.use('/article', article);  
-app.use('/login', login);
-app.use('/ng', (req, res) => {
-	res.header('Access-Control-Allow-Origin', '*');
-	res.sendfile('public/ng.html');
-})
+app.use('/api/index', index);
+app.use('/api/upload', upload);
+app.use('/api/article', article);  
+app.use('/api/login', login);
+
 app.get('/*', (req, res) => {
 	res.sendfile("public/index.html");
 })
