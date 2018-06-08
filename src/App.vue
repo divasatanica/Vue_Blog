@@ -34,22 +34,6 @@ export default {
     }
   },
   created() {
-    try {
-      this.$http.post(`${api.address}/login`, {}, {credentials: true}).then((response) => {
-        const data = response.data
-        if(data.code == 1) {
-          this.logged = true;
-          this.$_proxy(true, 'set');
-        }
-      }, (response) => {
-        console.log(response);
-      }).catch((err) => {
-        console.log(err);
-      })
-    }
-    catch(e) {
-      console.log(e);
-    }
     
   }
 }

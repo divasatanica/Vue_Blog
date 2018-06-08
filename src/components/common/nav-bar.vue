@@ -3,19 +3,11 @@
     <div class="nav-container">
       <ul class="left-entries">
         <li class="entry left-float"><router-link to="/" class="custom-font">Index</router-link></li>
-        <li class="entry left-float" v-on:mouseenter='openMenu()' v-on:mouseleave='closeMenu()'><router-link to="/article/1" class="custom-font">Article</router-link></li>
+        <li class="entry left-float"><router-link to="/article/1" class="custom-font">Article</router-link></li>
         <!-- <li class="entry custom-font">Work</li>
         <li class="entry custom-font">About</li> -->
       </ul>
-      <ul class="right-entries">
-        <li class="entry right-float" v-if="hasLogged || loggedin"><button class="login" ><router-link :to="{path: '/post'}" class="custom-font">POST</router-link></button><li>
-        <li class="entry right-float" v-if="!hasLogged && !loggedin"><button class="login" ><router-link v-bind:to="topRightLink" class="login-link custom-font">LOGIN</router-link></button></li>
-        <li class="entry right-float" v-else><button class="login login-link custom-font"  @click="logout">LOGOUT</button></li>
-      </ul>
     </div>
-    <transition name="el-zoom-in-center" >
-      <router-view name="login" v-on:loginner="login"></router-view>
-    </transition>
   </div>
 </template>
 
@@ -28,33 +20,9 @@ export default {
       loggedName: '',
       hasOpen: false,
       loggedin: false,
-      passageClass: [{id: 0, text: '学习'}, {id: 1, text: '吹水'}],
-      dropdownClass: {'dropdown-open': false},
-      topRightLink: {name:'login', path: '/login'}
     }
   },
   methods: {
-    openMenu () {
-      this.dropdownClass['dropdown-open'] = true;
-    },
-    closeMenu () {
-      this.dropdownClass['dropdown-open'] = false;
-    },
-    login(data) {
-      this.msg = 'LOGOUT';
-      this.loggedin = true;
-      this.loggedName = data;
-    },
-    logout() {
-      if(window.confirm('Sure to QUIT?')) {
-        this.$_proxy(false, 'set');
-        this.loggedin = false;
-        this.$emit('logout');
-        if(this.$route.path.indexOf('post') > -1) {
-          this.$router.push({path: '/article/1'});
-        }
-      }
-    }
 
   }
 }

@@ -18,3 +18,5 @@ selenium-debug.log
 
 back/public/upload
 back/public/
+build/manifest.json
+dll/

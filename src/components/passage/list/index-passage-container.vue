@@ -3,7 +3,7 @@
     <div class="passage-container-topbar"><span class="return-to" v-if="mode !== 1" @click="req()">退出筛选结果</span></div>
     <div class="passage-func-zone">
       <div class="passages">
-        <single v-for="(item, index) in articles" :key="item._id" :article="item" @filtertag="filterByTag"></single>
+        <single v-for="item in articles" :key="item._id" :article="item" @filtertag="filterByTag"></single>
       </div>
       <div class="side-bar">
         <div class="filter-date">
